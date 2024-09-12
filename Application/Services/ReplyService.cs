@@ -47,7 +47,9 @@ public class ReplyService(IThemeRepository _themeRepository, ITelegramBotClient 
             Id = Guid.NewGuid(),
             ReportTheme = theme,
             Message = update.Message.Text,
-            User = user
+            User = user,
+            Created = DateTime.UtcNow,
+            ReportStatus = Domain.Domain.Enums.ReportStatus.New,
         };
 
         await _reportRepository.AddReportAsync(report, cancellationToken);
